@@ -1,11 +1,12 @@
 import firestore from '@react-native-firebase/firestore';
 import {useUser} from '../context/UserContext';
-export const getMarks = () => {
-  const {user} = useUser();
+
+export const getMarks = user => {
   return firestore()
     .collection('marks')
-    .where('studet-id', '===', user?.rollNo)
-    .where('semester', '===', user?.semester)
+    .where('userId', '==', user?.uid)
+    .where('semester', '==', user?.semester)
+    .orderBy('created_at', 'asc')
     .get()
     .then(snap => {
       const courses = [];

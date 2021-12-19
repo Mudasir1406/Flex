@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {View} from 'react-native';
+import {Button} from 'react-native';
 import {
   Block,
   Header,
@@ -10,13 +10,26 @@ import {
   BottomDropDown,
   Mark,
 } from '../components';
-import marks from '../dummy/marks';
-
+import {useLoading} from '../context/LoadingContext';
+import {useUser} from '../context/UserContext';
+import {MarksServices} from '../services';
 const options = ['Design and Analysis of Algorithm'];
 
 const Marks = () => {
+  const {setLoading} = useLoading();
+  const {user} = useUser();
+  const [marks, setMarks] = useState();
   const [course, setCourse] = useState('');
-  console.log(course);
+  useEffect(() => {
+    if (user) {
+      setLoading(true);
+      MarksServices.getMarks(user)
+        .then(doc => setMarks(doc))
+        .catch(err => console.log(err))
+        .finally(_ => setLoading(false));
+    } else {
+    }
+  }, [user]);
 
   return (
     <>
@@ -26,9 +39,7 @@ const Marks = () => {
           onSelect={setCourse}
           options={options}
         />
-        {course ? (
-          <CourseHeading heading="Design and Analysis Of Algorithms" />
-        ) : null}
+
         {marks?.map((item, index) =>
           item?.name === course ? (
             <Mark heading={item?.type} key={index} mark={item} />

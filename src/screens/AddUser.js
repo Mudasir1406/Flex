@@ -1,5 +1,6 @@
 import React, {useReducer, useState} from 'react';
 import {Alert} from 'react-native';
+import {Auth} from '../services';
 import {
   AuthButton,
   AuthTextInput,
@@ -7,7 +8,6 @@ import {
   Header,
   SelectCourseCard,
 } from '../components';
-import {Auth} from '../services';
 
 const AddUser = ({navigation}) => {
   const [student, setStudent] = useState({
@@ -35,6 +35,7 @@ const AddUser = ({navigation}) => {
     fatherCNIC: '',
     withHoldingTax: '',
     password: '',
+    profilePicture: '',
   });
   const handleChange = (name, value) => {
     setStudent({
@@ -48,6 +49,16 @@ const AddUser = ({navigation}) => {
       .then(_ => {})
       .catch(err => Alert.alert('Error', err.message))
       .finally(() => console.log('done'));
+  };
+  const openGallery = () => {
+    ImagePicker.openPicker({
+      width: 300,
+      height: 400,
+      cropping: true,
+    }).then(image => {
+      setUser({...student, profilePicture: image.path}),
+        Auth.updateProfilePic(student.profilePicture, image.path, uid);
+    });
   };
 
   return (
@@ -204,7 +215,8 @@ const AddUser = ({navigation}) => {
         />
 
         <AuthButton buttontext="Sign up" onPress={signUp} />
-        <AuthButton buttontext="Sign up" onPress={() => console.log(student)} />
+
+        <AuthButton buttontext="Upload Image" onPress={openGallery} />
       </Block>
     </>
   );

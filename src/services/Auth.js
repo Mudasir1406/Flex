@@ -179,3 +179,11 @@ export const changePassword = async (
     .then(_ => {})
     .catch(err => Alert.alert('Error', err.message));
 };
+
+export const updateProfilePic = async (prevImageUri, imageUri, uid) => {
+  return Storage.uploadImage(prevImageUri, imageUri, uid).then(url => {
+    return firestore().collection('users').doc(uid).update({
+      profilePicture: url,
+    });
+  });
+};
