@@ -10,16 +10,30 @@ import {
   BottomDropDown,
   Mark,
 } from '../components';
-import {images, colors, dummy} from '../constants';
+import marks from '../dummy/marks';
+
+const options = ['Design and Analysis of Algorithm'];
 
 const Marks = () => {
+  const [course, setCourse] = useState('');
+  console.log(course);
+
   return (
     <>
       <Block contentContainerStyle={{padding: 20}}>
-        <CourseDropDown />
-        <CourseHeading heading="Design And Analysis Of Algorithms" />
-        <Mark heading="Assignment" />
-        <Mark heading="Assignment" />
+        <CourseDropDown
+          selected={course}
+          onSelect={setCourse}
+          options={options}
+        />
+        {course ? (
+          <CourseHeading heading="Design and Analysis Of Algorithms" />
+        ) : null}
+        {marks?.map((item, index) =>
+          item?.name === course ? (
+            <Mark heading={item?.type} key={index} mark={item} />
+          ) : null,
+        )}
       </Block>
       <BottomDropDown />
     </>

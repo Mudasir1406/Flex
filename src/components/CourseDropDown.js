@@ -1,19 +1,22 @@
-import React, {useState} from 'react';
-import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import React from 'react';
+import {StyleSheet, View} from 'react-native';
 import {colors, fonts} from '../constants';
 
 import {Picker} from '@react-native-picker/picker';
 
-const CourseDropDown = () => {
-  const [selectedCourse, setSelectedCourse] = useState();
+// R791S1
+
+const CourseDropDown = ({selected, onSelect, options}) => {
   return (
     <View style={styles.contanier}>
       <Picker
         itemStyle={styles.lable}
-        selectedValue={selectedCourse}
-        onValueChange={(itemValue, itemIndex) => setSelectedCourse(itemValue)}>
-        <Picker.Item label="Design And Analysis Of Algorithms" value="Algo" />
-        <Picker.Item label="DataBase Managment" value="DB" />
+        selectedValue={selected}
+        onValueChange={(itemValue, itemIndex) => onSelect(itemValue)}>
+        <Picker.Item label="Select Course" value="" />
+        {options?.map((option, index) => (
+          <Picker.Item label={option} value={option} key={index} />
+        ))}
       </Picker>
     </View>
   );

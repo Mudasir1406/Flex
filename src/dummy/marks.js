@@ -1,6 +1,7 @@
 export default marks = [
   {
     userId: 'ymkVsyXGDnfN5SjeWhfOmUCHgQ72',
+    name: 'Design and Analysis of Algorithm',
     semester: 1,
     type: 'Assignment',
     totalMarks: 200,
@@ -9,6 +10,7 @@ export default marks = [
   },
   {
     userId: 'ymkVsyXGDnfN5SjeWhfOmUCHgQ72',
+    name: 'Design and Analysis of Algorithm',
     semester: 1,
     type: 'Mid 1',
     totalMarks: 200,
@@ -17,6 +19,7 @@ export default marks = [
   },
   {
     userId: 'ymkVsyXGDnfN5SjeWhfOmUCHgQ72',
+    name: 'Design and Analysis of Algorithm',
     semester: 1,
     type: 'Mid 2',
     totalMarks: 200,
@@ -25,6 +28,7 @@ export default marks = [
   },
   {
     userId: 'ymkVsyXGDnfN5SjeWhfOmUCHgQ72',
+    name: 'Design and Analysis of Algorithm',
     semester: 1,
     type: 'Final',
     totalMarks: 200,
