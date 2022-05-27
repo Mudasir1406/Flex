@@ -1,11 +1,8 @@
 import React, {useEffect, useState} from 'react';
-import {Button} from 'react-native';
 import {
   Block,
   Header,
   List,
-  CourseHeading,
-  MarksContanier,
   CourseDropDown,
   BottomDropDown,
   Mark,
@@ -13,18 +10,20 @@ import {
 import {useLoading} from '../context/LoadingContext';
 import {useUser} from '../context/UserContext';
 import {MarksServices} from '../services';
-const options = ['Design and Analysis of Algorithm'];
+const options = ['Design and Analysis of Algorithm', 'Software Engineering'];
 
 const Marks = () => {
   const {setLoading} = useLoading();
   const {user} = useUser();
-  const [marks, setMarks] = useState();
+  const [marks, setMarks] = useState([]);
   const [course, setCourse] = useState('');
   useEffect(() => {
     if (user) {
       setLoading(true);
       MarksServices.getMarks(user)
-        .then(doc => setMarks(doc))
+        .then(doc => {
+          setMarks(doc);
+        })
         .catch(err => console.log(err))
         .finally(_ => setLoading(false));
     } else {
@@ -46,7 +45,6 @@ const Marks = () => {
           ) : null,
         )}
       </Block>
-      <BottomDropDown />
     </>
   );
 };

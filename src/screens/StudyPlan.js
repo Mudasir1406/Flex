@@ -2,17 +2,19 @@ import React, {useState, useEffect} from 'react';
 import {Block, Header, StudyPlanCard} from '../components';
 import {CourseService} from '../services';
 import {useLoading} from '../context/LoadingContext';
-
-const StudyPlan = () => {
+import {useUser} from '../context/UserContext';
+const StudyPlan = ({navigation}) => {
   const {setLoading} = useLoading();
-
+  const {user} = useUser();
   const [courses, setCourses] = useState();
 
   useEffect(() => {
     setLoading(true);
 
-    CourseService.getCourses()
-      .then(docs => setCourses(docs))
+    CourseService.getAllCourses()
+      .then(docs => {
+        setCourses(docs);
+      })
       .catch(err => console.log(err))
       .finally(_ => setLoading(false));
   }, []);

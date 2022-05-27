@@ -1,7 +1,9 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {colors, fonts} from '../constants';
+import CheckBox from '@react-native-community/checkbox';
 const SelectCourseCard = ({courseId, courseName}) => {
+  const [toggleCheckBox, setToggleCheckBox] = useState(false);
   return (
     <View style={styles.contanier}>
       <Text style={styles.text}>{courseId}</Text>
@@ -9,6 +11,12 @@ const SelectCourseCard = ({courseId, courseName}) => {
         {courseName}
       </Text>
       <View style={{paddingHorizontal: 10}}></View>
+      <CheckBox
+        disabled={false}
+        value={toggleCheckBox}
+        onValueChange={newValue => setToggleCheckBox(newValue)}
+        tintColors={colors.primary}
+      />
     </View>
   );
 };
@@ -22,6 +30,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
+    marginBottom: 25,
   },
   text: {
     ...fonts.courseCard,

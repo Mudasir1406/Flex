@@ -12,3 +12,4 @@ export {default as FeeChalan} from './FeeChalan';
 export {default as GiveFeedBack} from './GiveFeedBack';
 export {default as Attandance} from './Attendance';
 export {default as AddUser} from './AddUser';
+export {default as DeleteUser} from './DeleteUser';

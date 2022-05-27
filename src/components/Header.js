@@ -1,6 +1,6 @@
 import React from 'react';
 import {StyleSheet, Text, TouchableOpacity, View, Image} from 'react-native';
-import {colors, fonts} from '../constants';
+import {colors, fonts, images} from '../constants';
 import BackButton from './BackButton';
 const Header = ({
   heading,
@@ -18,7 +18,7 @@ const Header = ({
         style={styles.imagecontanier}
         activeOpacity={0.8}
         onPress={onPress}>
-        <Image style={styles.image} source={source}></Image>
+        <Image style={styles.image} source={images.profile}></Image>
       </TouchableOpacity>
     </View>
   );

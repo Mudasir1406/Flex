@@ -37,12 +37,13 @@ const Login = ({navigation}) => {
     <Block
       contentContainerStyle={{padding: 20, paddingTop: 50}}
       backgroundColor={colors.primary}>
-      <Image source={images.Logo} />
+      <Image source={images.Logo} style={{resizeMode: 'center'}} />
       <AuthHeading heading="Sign In" />
       <AuthTextInput
         placeholder="Email"
         name="Profile"
         value={user.email}
+        keyboardType={'email-address'}
         onChangeText={e => handleChange('email', e)}
       />
       <AuthTextInput
@@ -51,6 +52,8 @@ const Login = ({navigation}) => {
         secureTextEntry={true}
         value={user.password}
         onChangeText={e => handleChange('password', e)}
+        maxLength={12}
+        minLength={6}
       />
 
       <AuthButton buttontext="Sign In" onPress={signIn} />
@@ -61,6 +64,10 @@ const Login = ({navigation}) => {
       <TouchableText
         text="Add Student"
         onPress={() => navigation.navigate('AddUser')}
+      />
+      <TouchableText
+        text="Delete Student"
+        onPress={() => navigation.navigate('DeleteUser')}
       />
     </Block>
   );

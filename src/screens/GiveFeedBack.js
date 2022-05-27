@@ -12,7 +12,7 @@ const GiveFeedBack = ({navigation}) => {
         onPressBack={() => navigation.goBack()}
       />
       <Block contentContainerStyle={{padding: 20}}>
-        <MultiLineTextInput />
+        <MultiLineTextInput onPress={() => navigation.goBack()} />
       </Block>
     </>
   );

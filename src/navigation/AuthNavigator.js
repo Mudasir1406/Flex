@@ -4,7 +4,7 @@ import {
   CardStyleInterpolators,
 } from '@react-navigation/stack';
 
-import {Login, ForgotPassword, AddUser} from '../screens';
+import {Login, ForgotPassword, AddUser, DeleteUser} from '../screens';
 const Stack = createStackNavigator();
 
 const AuthNavigator = ({navigation}) => {
@@ -17,6 +17,7 @@ const AuthNavigator = ({navigation}) => {
       <Stack.Screen name="Login" component={Login} />
       <Stack.Screen name="ForgotPassword" component={ForgotPassword} />
       <Stack.Screen name="AddUser" component={AddUser} />
+      <Stack.Screen name="DeleteUser" component={DeleteUser} />
     </Stack.Navigator>
   );
 };

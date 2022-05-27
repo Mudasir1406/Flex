@@ -34,7 +34,8 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   text: {
-    ...fonts.authBottomText,
+    ...fonts.AuthButton,
+    color: colors.black,
   },
 });
 export default ProfilePictureAdd;

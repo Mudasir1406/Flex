@@ -1,7 +1,9 @@
 import firestore from '@react-native-firebase/firestore';
 import {useUser} from '../context/UserContext';
 
-export const getMarks = user => {
+export const getMarks = async user => {
+  if (!user?.uid || !user?.semester) return;
+
   return firestore()
     .collection('marks')
     .where('userId', '==', user?.uid)

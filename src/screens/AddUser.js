@@ -6,9 +6,10 @@ import {
   AuthTextInput,
   Block,
   Header,
+  ProfilePictureAdd,
   SelectCourseCard,
 } from '../components';
-
+import ImagePicker from 'react-native-image-crop-picker';
 const AddUser = ({navigation}) => {
   const [student, setStudent] = useState({
     rollNo: '',
@@ -53,45 +54,54 @@ const AddUser = ({navigation}) => {
   const openGallery = () => {
     ImagePicker.openPicker({
       width: 300,
-      height: 400,
+      height: 300,
       cropping: true,
     }).then(image => {
-      setUser({...student, profilePicture: image.path}),
+      setStudent({...student, profilePicture: image.path}),
         Auth.updateProfilePic(student.profilePicture, image.path, uid);
     });
   };
 
   return (
     <>
+      {console.log(student.profilePicture)}
       <Header
         withBack={true}
         heading="Admin"
         onPressBack={() => navigation.goBack()}
       />
       <Block contentContainerStyle={{padding: 20}}>
+        <ProfilePictureAdd
+          onPress={openGallery}
+          source={student.profilePicture}
+        />
         <AuthTextInput
           name="Email"
           placeholder="Roll No"
           value={student.rollNo}
           onChangeText={e => handleChange('rollNo', e)}
+          maxLength={6}
         />
         <AuthTextInput
           name="Email"
           placeholder="Degree"
           value={student.degree}
           onChangeText={e => handleChange('degree', e)}
+          maxLength={6}
         />
         <AuthTextInput
           name="Email"
           placeholder="Batch"
           value={student.batch}
           onChangeText={e => handleChange('batch', e)}
+          maxLength={4}
         />
         <AuthTextInput
           name="Email"
           value={student.section}
           placeholder="Section"
           onChangeText={e => handleChange('section', e)}
+          maxLength={1}
         />
         <AuthTextInput
           name="Email"
@@ -121,12 +131,14 @@ const AddUser = ({navigation}) => {
           value={student.bloodGroup}
           placeholder="Blood Group"
           onChangeText={e => handleChange('bloodGroup', e)}
+          minLength={4}
         />
         <AuthTextInput
           name="Email"
           value={student.gender}
           placeholder="Gender"
           onChangeText={e => handleChange('gender', e)}
+          // autoComplete={gender}
         />
         <AuthTextInput
           name="Email"

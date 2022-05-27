@@ -1,6 +1,7 @@
 import firestore from '@react-native-firebase/firestore';
 
-export const getCourses = semester => {
+export const getCourses = async semester => {
+  console.log(semester);
   let query = firestore().collection('courses');
   if (semester < 8 && semester > 0)
     query = query.where('semester', '==', semester + 1);
@@ -14,6 +15,22 @@ export const getCourses = semester => {
       });
     });
 
+    return courses;
+  });
+};
+
+export const getAllCourses = async () => {
+  let query = firestore().collection('courses');
+
+  return query.get().then(snap => {
+    const courses = [];
+    snap.forEach(docs => {
+      courses.push({
+        id: docs.id,
+        ...docs.data(),
+      });
+    });
+    console.log(courses);
     return courses;
   });
 };

@@ -1,5 +1,5 @@
 import React from 'react';
-import {View} from 'react-native';
+import {Alert, View} from 'react-native';
 import {Block, Header, FeeChalanCard, PrimaryButton} from '../components';
 import {colors} from '../constants';
 const FeeChalan = ({navigation}) => {
@@ -18,13 +18,11 @@ const FeeChalan = ({navigation}) => {
           padding: 10,
           backgroundColor: colors.background,
         }}>
-        <FeeChalanCard heading="Amount" value="1000/=" />
-        <FeeChalanCard heading="Date" value="1000/=" />
-        <FeeChalanCard heading="Amount" value="1000/=" />
-        <FeeChalanCard heading="Amount" value="1000/=" />
-        <FeeChalanCard heading="Amount" value="1000/=" />
-        <FeeChalanCard heading="Amount" value="1000/=" />
-        <FeeChalanCard heading="Amount" value="1000/=" />
+        <FeeChalanCard heading="Serial No" value="1" />
+        <FeeChalanCard heading="Amount" value="17400/=" />
+        <FeeChalanCard heading="Generated Date" value="04-sep-2021" />
+        <FeeChalanCard heading="Due Date" value="22-sep-2021" />
+        <FeeChalanCard heading="Status" value="Paid" />
       </Block>
       <View
         style={{
@@ -33,7 +31,10 @@ const FeeChalan = ({navigation}) => {
           padding: 10,
         }}>
         <PrimaryButton heading="Details" />
-        <PrimaryButton heading="Print" />
+        <PrimaryButton
+          heading="Print"
+          onPress={() => Alert.alert('Alert', 'Chalan Printed')}
+        />
       </View>
     </>
   );

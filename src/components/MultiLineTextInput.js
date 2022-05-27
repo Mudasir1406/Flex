@@ -8,7 +8,7 @@ import {
 } from 'react-native';
 import {colors, fonts} from '../constants';
 
-const MultiLineTextInput = () => {
+const MultiLineTextInput = ({onPress}) => {
   return (
     <>
       <View style={styles.contanier}>
@@ -18,7 +18,10 @@ const MultiLineTextInput = () => {
           style={styles.text}
         />
       </View>
-      <TouchableOpacity style={styles.button} activeOpacity={0.8}>
+      <TouchableOpacity
+        style={styles.button}
+        activeOpacity={0.8}
+        onPress={onPress}>
         <Text style={styles.buttonText}>Submit</Text>
       </TouchableOpacity>
     </>

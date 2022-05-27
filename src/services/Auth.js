@@ -187,3 +187,23 @@ export const updateProfilePic = async (prevImageUri, imageUri, uid) => {
     });
   });
 };
+
+export const deleteUser = async (email, password, navigation) => {
+  return auth()
+    .signInWithEmailAndPassword(email?.trim(), password)
+    .then(user => {
+      console.log(user);
+      return firestore()
+        .collection('users')
+        .doc(user?.user?.uid)
+        .delete()
+        .then(() =>
+          Alert.alert('Sucess', `User with Email ${email} deleted`, [
+            {
+              text: 'Ok',
+              onPress: () => navigation.goBack(),
+            },
+          ]),
+        );
+    });
+};

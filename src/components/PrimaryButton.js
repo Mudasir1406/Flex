@@ -3,9 +3,12 @@ import {StyleSheet, Text, View, TouchableOpacity} from 'react-native';
 import {} from 'react-native-gesture-handler';
 import {colors, fonts} from '../constants';
 
-const PrimaryButton = ({heading}) => {
+const PrimaryButton = ({heading, onPress}) => {
   return (
-    <TouchableOpacity style={styles.contanier} activeOpacity={0.8}>
+    <TouchableOpacity
+      style={styles.contanier}
+      activeOpacity={0.8}
+      onPress={onPress}>
       <Text style={styles.text}> {heading}</Text>
     </TouchableOpacity>
   );

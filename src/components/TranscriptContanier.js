@@ -5,13 +5,7 @@ import TranscriptCard from './TranscriptCard';
 const TranscriptContanier = () => {
   return (
     <View style={styles.contanier}>
-      <TranscriptCard
-        chAttemp={14}
-        chErnd={14}
-        gpa={3.23}
-        sgpa={3.23}
-        heading="Fall 2019"
-      />
+     
       <TranscriptCard
         chAttemp={14}
         chErnd={14}
